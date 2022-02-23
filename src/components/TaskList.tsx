@@ -2,6 +2,8 @@ import {Flex, Input, Button} from "@chakra-ui/react"
 import { useRef } from "react"
 import usePersistedState from "../hooks/usePersistedState";
 import { Task } from "../types/Task";
+import TaskItem from "./TaskItem";
+
 
 export default function TaskList (){
     const inputRef = useRef<HTMLInputElement>(null);
@@ -28,13 +30,13 @@ export default function TaskList (){
             <Flex marginX={20} marginTop={5} h="5vh">
                 <Input ref={inputRef}/>
                 <Button type="submit" onClick={addTask} colorScheme="purple">
-                    Add Task
+                    Add Tarefa
                 </Button>
             </Flex>
             <Flex flexDir="column" alignItems="center" as="main" minH="51.9vh" paddingY={5}>
                 {taskList.map (
                     (task: Task, index:number)=> (
-                        <h4>{task.name}</h4>
+                            <TaskItem task={task} index={index} taskList={taskList} setTaskList={setTaskList}/>
                     )
                 )}
             </Flex>
