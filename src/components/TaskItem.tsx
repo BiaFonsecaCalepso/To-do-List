@@ -19,9 +19,15 @@ export default function TaskItem ({task, index, taskList, setTaskList}:TaskProps
         setTaskList (list);
         closePopover ();
     }
+    const toogleTask= (index:number)=> {
+        const list= [...taskList];
+        list[index].isDone=! list[index].isDone;
+        setTaskList (list);
+    }
+
     return (
         <Flex bg="purple.600" w="400px" minH="40px" paddingX="5" alignItems="center" borderRadius={15} marginY="5">
-            <Checkbox isChecked={task.isDone}/>
+            <Checkbox isChecked={task.isDone} onChange={()=>toogleTask(index)}/>
             <Text marginRight="auto" marginLeft="5" paddingRight={2.5} wordBreak="break-all" textDecor={task.isDone ?"line-through":"none"} opacity={task.isDone ? "0.5":"1"}>
                 {task.name}
             </Text>
